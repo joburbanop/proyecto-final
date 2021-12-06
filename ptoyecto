@@ -1,0 +1,39 @@
+#reto
+#importamos la libreria de aleatoriedad
+import random
+
+#robot para jugar 
+x = input_string("ingresa tu nombre jugador 1")
+print x,"eres el jugador de color amarillo"
+y = input_string("ingresa tu nombre jugador 2")
+print y,"eres el jugador de color azul"
+R1=UsedRobot(2,9,'E',name=x,beepers=10,colour="yellow")
+R2=UsedRobot(19,9,'W',name=y,beepers=10,colour="blue")
+
+#lista para manejar mejor los datos
+l=[R1,R2]
+
+#funcion para girarDerecha ambos tobot
+def girarDerecha(num_l):
+    global l
+    repeat(l[num_l].turn_left,3)
+
+#funcion para regresar R1
+def regresar(num_l):
+    global l
+    repeat(l[num_l].turn_left,2)
+
+#funcion para ver si hay un muro a el frente 
+def frente(posicion_l):
+    if front_is_clar():
+        turn_left()
+
+#verificar si hay un muro a la izquierda
+def izquierda():
+    
+
+#dado
+while True:
+    print "Es el turno del jugador 1"
+    dado1=randon.randint(1,6)
+turn_off()
