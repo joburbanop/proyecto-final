@@ -13,35 +13,53 @@ R2=UsedRobot(19,9,'W',name=y,beepers=10,colour="blue")
 #lista para manejar mejor los datos
 l=[R1,R2]
 
+#variable numeroBeper
+numeroBeper=0
+
+
 #funcion para girarDerecha ambos tobot
 def girarDerecha(num_l):
     global l
     repeat(l[num_l].turn_left,3)
 
-#funcion para regresar R1
+#funcion para regresar
 def regresar(num_l):
     global l
-    repeat(l[num_l].turn_left,2)
-
+    global numeroBeper
+    if ((numeroBeper==2)or(numeroBeper==3)or(numeroBeper==4)):
+        repeat(l[num_l].turn_left,2)
+        print "Hiciste que el otro jugador retroceda en el siguiente turno"
 
 #beeper para toma de desiciones 
 def beeper(num_l):
+    global numeroBeper
     numeroBeper=0
-    if l[num_l].on_beeper():
+    while l[num_l].on_beeper():
         l[num_l].pick_beeper()
         numeroBeper=numeroBeper+1
-    if (numeroBeper==1):
-        desicion=input_int ("1 para girar a la derecha,2 para girar a la izquierda")
+    if (numeroBeper==1)or(numeroBeper==3):
+        l[num_l].put_beeper()
+        desicion=input_int ("1 para girar a la derecha,2 para girar a la izquierda,3 para seguir en el mismo sentido")
         if (desicion==1):
             girarDerecha(num_l)
-        else:
+            numeroBeper=0
+        elif (desicion==2):
             l[num_l].turn_left()
+        elif (desicion==3):
+            repeat(l[num_l].turn_left,4)
+    if (numeroBeper==2):
+        repeat(l[num_l].turn_left,2)
+    if (numeroBeper==4):
+        desicion=input_int ("3 para seguir en el mismo sentido, 4 para cambiar de sentido")
+        if (desicion==3):
+            repeat(l[num_l].turn_left,4)
+        elif (desicion==4):
+            repeat(l[num_l].turn_left,2)
 
 #funcion movimiento
 def movimiento(num_l):
     if l[num_l].front_is_clear():
         l[num_l].move()
-
 
 #iniciando programa 
 while True:
@@ -53,6 +71,7 @@ while True:
         movimiento(0) 
         if R1.on_beeper():
             beeper(0)
+            regresar(1)
 
     #turno del jugador 2
     print "es el turno del jugador 2"
@@ -62,4 +81,6 @@ while True:
         movimiento(1) 
         if R2.on_beeper():
             beeper(1)
+            regresar(0)
+
 turn_off()
