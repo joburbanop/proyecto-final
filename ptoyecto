@@ -62,7 +62,7 @@ def beeper(num_l):
 
     #brneficion par cundo tomas lo beepers
     if numeroBeper==2:
-        rerepeat(l[num_l].turn_left,2)
+        repeat(l[num_l].turn_left,2)
     if (numeroBeper==8):
         print "ganaste", l[num_l].name
         turn_off()
@@ -82,7 +82,7 @@ while True:
         movimiento(0) 
         if R1.on_beeper():
             beeper(0)
-        if numeroBeeper==2 or numeroBeeper==3 or numeroBeeper==4:
+        if numeroBeper==2 or numeroBeper==3 or numeroBeper==4:
             regresar(1)
 
     #turno del jugador 2
@@ -93,7 +93,7 @@ while True:
         movimiento(1) 
         if R2.on_beeper():
             beeper(1)
-    if numeroBeeper==2 or numeroBeeper==3 or numeroBeeper==4:
+    if numeroBeper==2 or numeroBeper==3 or numeroBeper==4:
             regresar(0)
 
 turn_off()
