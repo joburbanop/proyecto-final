@@ -26,9 +26,13 @@ def girarDerecha(num_l):
 def regresar(num_l):
     global l
     global numeroBeper
+    print "Hiciste que el otro jugador retroceda en el siguiente turno"
     if ((numeroBeper==2)or(numeroBeper==3)or(numeroBeper==4)):
         repeat(l[num_l].turn_left,2)
-        print "Hiciste que el otro jugador retroceda en el siguiente turno"
+    while numeroBeper!=0:
+        if not front_is_clar():
+            girarDerecha(num_l)
+        l[num_l].move()
 
 #beeper para toma de desiciones 
 def beeper(num_l):
@@ -40,9 +44,8 @@ def beeper(num_l):
     if (numeroBeper==1)or(numeroBeper==3):
         l[num_l].put_beeper()
         desicion=input_int ("1 para girar a la derecha,2 para girar a la izquierda,3 para seguir en el mismo sentido")
-        while numeroBeper!=0:
-            l[num_l].put_beeper()
-            numeroBeper=numeroBeper-1
+
+        #toma de desiciones dirar derecha izquierda o seguir derecho
         if (desicion==1):
             girarDerecha(num_l)
             numeroBeper=0
@@ -50,17 +53,20 @@ def beeper(num_l):
             l[num_l].turn_left()
         elif (desicion==3):
             repeat(l[num_l].turn_left,4)
-    if (numeroBeper==2):
-        repeat(l[num_l].turn_left,2)
-    if (numeroBeper==4):
-        desicion=input_int ("3 para seguir en el mismo sentido, 4 para cambiar de sentido")
-        if (desicion==3):
-            repeat(l[num_l].turn_left,4)
-        elif (desicion==4):
-            repeat(l[num_l].turn_left,2)
+        if (numeroBeper==4):
+            desicion=input_int ("3 para seguir en el mismo sentido, 4 para cambiar de sentido")
+            if (desicion==3):
+                repeat(l[num_l].turn_left,4)
+            elif (desicion==4):
+                repeat(l[num_l].turn_left,2)
+
+    #brneficion par cundo tomas lo beepers
+    if numeroBeper==2:
+        rerepeat(l[num_l].turn_left,2)
     if (numeroBeper==8):
         print "ganaste", l[num_l].name
         turn_off()
+
 #funcion movimiento
 def movimiento(num_l):
     if l[num_l].front_is_clear():
@@ -76,6 +82,7 @@ while True:
         movimiento(0) 
         if R1.on_beeper():
             beeper(0)
+        if numeroBeeper==2 or numeroBeeper==3 or numeroBeeper==4:
             regresar(1)
 
     #turno del jugador 2
@@ -86,6 +93,7 @@ while True:
         movimiento(1) 
         if R2.on_beeper():
             beeper(1)
+    if numeroBeeper==2 or numeroBeeper==3 or numeroBeeper==4:
             regresar(0)
 
 turn_off()
