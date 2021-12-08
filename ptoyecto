@@ -29,18 +29,10 @@ def regresar(num_l):
     global numeroMovimiento
     global l
     global numeroBeper
-    print "Hiciste que el otro jugador retroceda en el siguiente turno"
+    
     if ((numeroBeper==2)or(numeroBeper==3)or(numeroBeper==4)):
         repeat(l[num_l].turn_left,2)
-        while numeroBeper!=0:
-            numeroBeper=numeroBeper-1
-            if (l[num_l].front_is_clear()and l[num_l].left_is_clear() and l[num_l].right_is_clear()):
-                print "no se puede retoceder ya que no hay ningun movimiento"
-            if l[num_l].front_is_clear()and l[num_l].left_is_clear():
-                girarDerecha(num_l)
-            if l[num_l].front_is_clear()and l[num_l].rihgt_is_clear():
-                l[num_l].turn_left()
-            l[num_l].move()
+        print "Hiciste que el otro jugador retroceda en el siguiente turno"
 
 #beeper para toma de desiciones 
 def beeper(num_l):
@@ -73,7 +65,7 @@ def beeper(num_l):
         repeat(l[num_l].turn_left,2)
     if (numeroBeper==8):
         print "ganaste", l[num_l].name
-        turn_off()
+        l[num_l].turn_off()
 
 #funcion movimiento
 def movimiento(num_l):
@@ -92,8 +84,8 @@ while True:
         movimiento(0) 
         if R1.on_beeper():
             beeper(0)
-        if numeroBeper==2 or numeroBeper==3 or numeroBeper==4:
-            regresar(1)
+            if numeroBeper==2 or numeroBeper==3 or numeroBeper==4:
+                regresar(1)
 
     #turno del jugador 2
     print "es el turno del jugador 2"
@@ -104,7 +96,7 @@ while True:
         movimiento(1) 
         if R2.on_beeper():
             beeper(1)
-    if numeroBeper==2 or numeroBeper==3 or numeroBeper==4:
-            regresar(0)
+            if numeroBeper==2 or numeroBeper==3 or numeroBeper==4:
+                regresar(0)
 
 turn_off()
