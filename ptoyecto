@@ -40,6 +40,9 @@ def beeper(num_l):
     if (numeroBeper==1)or(numeroBeper==3):
         l[num_l].put_beeper()
         desicion=input_int ("1 para girar a la derecha,2 para girar a la izquierda,3 para seguir en el mismo sentido")
+        while numeroBeper!=0:
+            l[num_l].put_beeper()
+            numeroBeper=numeroBeper-1
         if (desicion==1):
             girarDerecha(num_l)
             numeroBeper=0
@@ -57,6 +60,7 @@ def beeper(num_l):
             repeat(l[num_l].turn_left,2)
     if (numeroBeper==8):
         print "ganaste", l[num_l].name
+        turn_off()
 #funcion movimiento
 def movimiento(num_l):
     if l[num_l].front_is_clear():
