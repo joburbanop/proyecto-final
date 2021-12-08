@@ -55,7 +55,8 @@ def beeper(num_l):
             repeat(l[num_l].turn_left,4)
         elif (desicion==4):
             repeat(l[num_l].turn_left,2)
-
+    if (numeroBeper==8):
+        print "ganaste", l[num_l].name
 #funcion movimiento
 def movimiento(num_l):
     if l[num_l].front_is_clear():
